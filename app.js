@@ -80,16 +80,11 @@ client.on("message", async message => {
             return message.reply("Sorry, You don't have permissions to use this!");
         };
 
-        const deleteCount = parseInt(args[0], 10);
-
-        if(!deleteCount || deleteCount < 2 || deleteCount > 100)
-            return message.reply("Please provide a number between 2 and 100 for the number of messages to delete");
-
-        //for(i = 0; i <= deleteCount; i++){
-                          
-            //const fetched =  await message.channel.fetchMessages({count: i});
-        message.channel.bulkDelete(message.channel.messages.filter((r) => {return !r.reactions.has('✨');})).catch(error => message.reply(`Couldn't delete messages because of: ${error}`));                    
-        //}
+        message.channel
+        .bulkDelete(message.channel.messages
+        .filter((r) => {return !r.reactions.has('✨');}))
+        .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));                    
+        
     }
 
     if(command === "hello"){
